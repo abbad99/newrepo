@@ -1,0 +1,32 @@
+pipeline {
+    
+    agent any
+    stages{
+        stage("Code"){
+            steps {
+                echo "clone the code"
+                git url: "https://github.com/LondheShubham153/django-notes-app.git", branch: "main"
+            }
+        }
+    
+        stage("Build"){
+            steps {
+                echo "Building the image"
+                sh "docker build -t my-note-app . "
+            }
+            
+        }
+        stage("Push"){
+            steps {
+                echo "pushing the image to DockerHub"
+            }
+            
+        }
+        stage("Deploy"){
+            steps {
+                echo "Deploying the container"
+            }
+            
+        }
+    }
+}
